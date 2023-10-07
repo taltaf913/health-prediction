@@ -9,6 +9,7 @@ RUN pip install --upgrade pip
 
 # install dependencies
 RUN pip install -r requirements.txt
+RUN pip install xgboost
 
 # expose port for application
 EXPOSE 8001

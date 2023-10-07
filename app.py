@@ -39,7 +39,7 @@ def predict_death_event(age,anaemia,creatinine_phosphokinase,diabetes,ejection_f
         pred = 'Death'
     return pred
 
-    def dataset_summary():
+def dataset_summary():
     summary = f"Dataset Summary:\n\n"
     summary += data.describe().to_string()  # Use describe() to generate dataset statistics
 
