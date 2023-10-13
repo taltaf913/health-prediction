@@ -1,0 +1,28 @@
+{
+    "family": "sample-fargate",
+    "containerDefinitions": [
+        {
+            "name": "sentiment-cont",
+            "image": "712740165373.dkr.ecr.ap-south-1.amazonaws.com/sentiment-api-demo",
+            "cpu": 0,
+            "portMappings": [
+                {
+                    "containerPort": 8001,
+                    "hostPort": 8001,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "mountPoints": [],
+            "volumesFrom": []
+        }
+    ],
+    "executionRoleArn": "arn:aws:iam::712740165373:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "4096",
+    "memory": "16384"
+}
