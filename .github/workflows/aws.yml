@@ -32,11 +32,11 @@ on:
 
 env:
 AWS_REGION: ap-south-1
-ECR_REPOSITORY: bikeshare-fastapi-1
+ECR_REPOSITORY: patientsurvival-1
 ECS_SERVICE: service-1
-ECS_CLUSTER: MLCluster
+ECS_CLUSTER: patientsurvival
 ECS_TASK_DEFINITION: sample-fargate-1.json
-CONTAINER_NAME: bikeshare-app
+CONTAINER_NAME: patientsurvival-app
 
 permissions:
   contents: read
