@@ -2,8 +2,8 @@
     "family": "sample-fargate",
     "containerDefinitions": [
         {
-            "name": "sentiment-cont",
-            "image": "712740165373.dkr.ecr.ap-south-1.amazonaws.com/sentiment-api-demo",
+            "name": "patientsurvival-app",
+            "image": "396957076704.dkr.ecr.us-east-1.amazonaws.com/patientsurvival-1:latest",
             "cpu": 0,
             "portMappings": [
                 {
