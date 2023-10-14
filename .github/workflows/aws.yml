@@ -31,12 +31,12 @@ on:
     branches: [ "main" ]
 
 env:
-AWS_REGION: us-east-1
-ECR_REPOSITORY: patientsurvival-1
-ECS_SERVICE: service-1
-ECS_CLUSTER: patientsurvival
-ECS_TASK_DEFINITION: sample-fargate-1.json
-CONTAINER_NAME: patientsurvival-app
+  AWS_REGION: us-east-1
+  ECR_REPOSITORY: patientsurvival-1
+  ECS_SERVICE: service-1
+  ECS_CLUSTER: patientsurvival
+  ECS_TASK_DEFINITION: sample-fargate-1.json
+  CONTAINER_NAME: patientsurvival-app
 
 permissions:
   contents: read
