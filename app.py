@@ -2,8 +2,35 @@ import gradio
 import joblib
 import numpy as np
 import xgboost
+from fastapi import FastAPI, Request, Response
+from xgboost import XGBClassifier
+from sklearn.metrics import f1_score, precision_score, recall_score
+import prometheus_client as prom
 
 # Load your trained model
+app = FastAPI()
+
+test_data = pd.read_csv(curr_path + "/heart_failure_clinical_records_dataset.csv")
+f1_metric = prom.Gauge('healthprediction_f1_score', 'F1 score for random 100 test samples')
+
+def update_metrics():
+    test = test_data.sample(100)
+    test_feat = test.iloc[:, :-1].values
+    test_cnt = test['DEATH_EVENT'].values
+    
+    test_pred = my_model.predict(test_feat)
+    f1 = f1_score(test_cnt, test_pred)
+
+    f1_metric.set(f1)
+
+
+
+@app.get("/metrics")
+async def get_metrics():
+    update_metrics()
+    return Response(media_type="text/plain", content= prom.generate_latest())
+    
+
 my_model = joblib.load(filename="xgboost-model.pkl")
 
 # Function for prediction
@@ -55,5 +82,9 @@ iface = gradio.Interface(fn = predict_death_event,
                          outputs = [out_response],
                          title = title,
                          description = description)
+app = gradio.mount_gradio_app(app, iface, path="/")					
 
-iface.launch(server_name="0.0.0.0", server_port = 8001)    # Ref: https://www.gradio.app/docs/interface
+if __name__ == "__main__":
+    # Use this for debugging purposes only
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8001)   # Ref: https://www.gradio.app/docs/interface
