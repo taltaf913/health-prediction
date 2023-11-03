@@ -1,6 +1,7 @@
 import gradio
 import joblib
 import numpy as np
+import pandas as pd
 import xgboost
 from fastapi import FastAPI, Request, Response
 from xgboost import XGBClassifier
@@ -49,10 +50,12 @@ def predict_death_event(age=55, anaemia='Yes', creatinine_phosphokinase=1280.25,
     input_to_model = np.array(input).reshape(1, -1)
     result = my_model.predict(input_to_model)
     #print(result)
-if result[0]==1:
-       return 'No'            # if DEATH_EVENT=1 means survive='No'
+    if result[0]==1:
+        return 'No'            # if DEATH_EVENT=1 means survive='No'
+    elif result[0]==0:
+        return 'Yes'
     else:
-       return 'Yes'
+        return 'ERROR while doing prediction!'
 
 
 # Input from user
