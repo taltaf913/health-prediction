@@ -3,3 +3,10 @@ joblib
 pandas
 numpy
 scikit-learn
+uvicorn
+fastapi
+python-multipart
+pydantic
+
+scikit-learn
+prometheus-client
