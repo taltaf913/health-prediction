@@ -3,11 +3,16 @@ import joblib
 import numpy as np
 import pandas as pd
 import xgboost
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent))
+#print(sys.path)
+from typing import Any
 from fastapi import FastAPI, Request, Response
 from xgboost import XGBClassifier
 from sklearn.metrics import f1_score, precision_score, recall_score
 import prometheus_client as prom
-
+curr_path = str(Path(__file__).parent)
 # Load your trained model
 app = FastAPI()
 
